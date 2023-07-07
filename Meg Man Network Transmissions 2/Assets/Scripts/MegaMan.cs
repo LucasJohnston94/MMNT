@@ -19,6 +19,9 @@ public class MegaMan : MonoBehaviour
     float sprintMultiplier = 2f;
     [SerializeField]
     GameObject projectilePrefab;
+
+    int projectileCount = 0;
+    float projectileDelay;
     
     bool isJumping = false;
 
@@ -63,17 +66,22 @@ public class MegaMan : MonoBehaviour
     }
     private void Shoot()
     {
-        if (Input.GetAxis("Shoot") != 0)
+        if (Input.GetAxis("Shoot") != 0 && projectileDelay <= 1)
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity, transform);
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
-            if (projectileScript != null)
+            while (projectileCount < 3)
             {
-                projectileScript.SetDamageMultiplier(5f);
+                GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity, transform);
+                Projectile projectileScript = projectile.GetComponent<Projectile>();
+                projectileCount++;
+                projectileDelay += Time.deltaTime;
+                if (projectileScript != null)
+                {
+                    projectileScript.SetDamageMultiplier(5f);
+                }
+                Debug.Log("MegaMan shoots");
             }
-            Debug.Log("MegaMan shoots");
-        }
-        
+            projectileDelay = 0;
+       }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
