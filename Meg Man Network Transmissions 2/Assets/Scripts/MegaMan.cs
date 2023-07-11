@@ -43,7 +43,7 @@ public class MegaMan : MonoBehaviour
     private void FixedUpdate()
     {
         Move();        
-        Shoot();
+        //Shoot();
     }
 
     private void Move()
