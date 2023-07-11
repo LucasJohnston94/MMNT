@@ -23,7 +23,9 @@ public class MegaMan : MonoBehaviour
     int projectileCount = 0;
     float projectileDelay;
     
-    bool isJumping = false;
+    public bool isJumping = false;
+
+    float moveHorizontal;
 
     private void Start()
     {
@@ -32,38 +34,34 @@ public class MegaMan : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space) && isJumping == false)
+        {
+            Jump();
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
-        Jump();
+        Move();        
         Shoot();
     }
+
     private void Move()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(moveHorizontal, 0, 0) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        moveHorizontal = Input.GetAxis("Horizontal");
+        Vector2 movement = new Vector2(moveHorizontal * moveSpeed, megaManMovement.velocity.y);
+        megaManMovement.velocity = movement;
+     
+    }
 
-        // Allows sprinting
-        if (Input.GetAxis("Run") > 0 && Input.GetAxis("Horizontal") != 0)
-        {
-            Vector3 sprint = new Vector3(moveHorizontal, 0, 0) * moveSpeed * sprintMultiplier * Time.deltaTime;
-            transform.Translate(sprint);
-        }
-    }
     private void Jump()
-    {
-       
-        if (Input.GetAxis("Jump") > 0 && isJumping == false)
-        {
-            Debug.Log("in");
-            megaManMovement.AddForce(Vector3.up * jumpForce, ForceMode2D.Force);
-            isJumping = true;
-        }
+    {  
+        Debug.Log("in");
+        megaManMovement.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        isJumping = true;
+        
     }
+
     private void Shoot()
     {
         if (Input.GetAxis("Shoot") != 0 && projectileDelay <= 1)
@@ -84,9 +82,9 @@ public class MegaMan : MonoBehaviour
        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (col.gameObject.tag == "Ground")
         {
             isJumping = false;
         }
