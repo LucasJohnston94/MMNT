@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3036854849473638870}
   - component: {fileID: 33616234149623239}
-  - component: {fileID: 3039109870654574054}
   - component: {fileID: -2792837532700958940}
   - component: {fileID: -5290534331576701301}
+  - component: {fileID: 3039109870654574054}
   m_Layer: 0
   m_Name: MegaMan
   m_TagString: Untagged
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3039109870654574054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2701620976132408513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8947d460a87247b4e9b8fa321176da29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 10
-  sprintMultiplier: 2
-  projectilePrefab: {fileID: 5693445357227953613, guid: 53f809a96d61c6549bb540c92d690a7b, type: 3}
 --- !u!50 &-2792837532700958940
 Rigidbody2D:
   serializedVersion: 4
@@ -175,3 +159,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &3039109870654574054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2701620976132408513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8947d460a87247b4e9b8fa321176da29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 10
+  sprintMultiplier: 2
+  bulletPrefab: {fileID: 5702664723837294604, guid: 53f809a96d61c6549bb540c92d690a7b, type: 3}
+  isJumping: 0

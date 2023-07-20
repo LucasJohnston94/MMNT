@@ -15,17 +15,18 @@ public class MegaMan : MonoBehaviour
     float moveSpeed = 5f;
     [SerializeField]
     float jumpForce = 10f;
-    [SerializeField]
-    float sprintMultiplier = 2f;
-    [SerializeField]
-    GameObject projectilePrefab;
+    //[SerializeField]
+    //float sprintMultiplier = 2f;
 
-    int projectileCount = 0;
-    float projectileDelay;
+    public Transform firePoint;
+    [SerializeField]
+    GameObject bulletPrefab;
+
     
     public bool isJumping = false;
 
     float moveHorizontal;
+    bool m_FacingRight;
 
     private void Start()
     {
@@ -38,25 +39,46 @@ public class MegaMan : MonoBehaviour
         {
             Jump();
         }
+        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
+        
+        if (moveHorizontal < 0 && !m_FacingRight)
+        {
+            Flip();
+        }
+        else if (moveHorizontal > 0 && m_FacingRight)
+        {
+            Flip();
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();        
-        //Shoot();
+        Move();
     }
 
     private void Move()
     {
+
         moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveHorizontal * moveSpeed, megaManMovement.velocity.y);
         megaManMovement.velocity = movement;
      
     }
 
+    private void Flip()
+    {
+        m_FacingRight = !m_FacingRight;
+
+        transform.Rotate(0, 180, 0);
+    }
+
     private void Jump()
     {  
-        Debug.Log("in");
+        // Jumping logic
         megaManMovement.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isJumping = true;
         
@@ -64,24 +86,12 @@ public class MegaMan : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetAxis("Shoot") != 0 && projectileDelay <= 1)
-        {
-            while (projectileCount < 3)
-            {
-                GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity, transform);
-                Projectile projectileScript = projectile.GetComponent<Projectile>();
-                projectileCount++;
-                projectileDelay += Time.deltaTime;
-                if (projectileScript != null)
-                {
-                    projectileScript.SetDamageMultiplier(5f);
-                }
-                Debug.Log("MegaMan shoots");
-            }
-            projectileDelay = 0;
-       }
+        // Shooting logic
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
+
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
