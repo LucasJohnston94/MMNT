@@ -28,9 +28,12 @@ public class MegaMan : MonoBehaviour
     float moveHorizontal;
     bool m_FacingRight;
 
+    private Animator anim;
+
     private void Start()
     {
         megaManMovement = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -66,6 +69,8 @@ public class MegaMan : MonoBehaviour
         moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveHorizontal * moveSpeed, megaManMovement.velocity.y);
         megaManMovement.velocity = movement;
+        anim.SetFloat("running", Mathf.Abs(movement.x));
+        
      
     }
 
@@ -81,6 +86,9 @@ public class MegaMan : MonoBehaviour
         // Jumping logic
         megaManMovement.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isJumping = true;
+
+        // Animation
+        anim.SetBool("jumping", true);
         
     }
 
@@ -97,6 +105,7 @@ public class MegaMan : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             isJumping = false;
+            anim.SetBool("jumping", false);
         }
     }
 }

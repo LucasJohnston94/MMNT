@@ -423,7 +423,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -467,14 +467,35 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.14872766, y: 1.0935649}
+  m_Size: {x: 1.6424718, y: 2.114175}
   m_Direction: 0
 --- !u!4 &1823745833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3036854849473638870, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
   m_PrefabInstance: {fileID: 142615431995698346}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1823745838
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823745822}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ea2d50caddcf4f44b3448f7ee9356a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &142615431995698346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_Offset.x
@@ -506,6 +527,18 @@ PrefabInstance:
     - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.875
+      objectReference: {fileID: 0}
+    - target: {fileID: -5290534331576701301, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.125
       objectReference: {fileID: 0}
     - target: {fileID: -2792837532700958940, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_Mass
@@ -523,6 +556,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 33616234149623239, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1350194151, guid: c056630e6a652c54ab1e5e97a69dacea, type: 3}
     - target: {fileID: 2701620976132408513, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_Name
       value: MegaMan
@@ -537,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036854849473638870, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.088
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3036854849473638870, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: m_LocalPosition.z
@@ -577,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 1811304402}
     - target: {fileID: 3039109870654574054, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: jumpForce
-      value: 5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3039109870654574054, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       propertyPath: moveSpeed
@@ -587,8 +624,7 @@ PrefabInstance:
       propertyPath: sprintMultiplier
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -2792837532700958940, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3036854849473638870, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
@@ -601,4 +637,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2701620976132408513, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1823745829}
+    - targetCorrespondingSourceObject: {fileID: 2701620976132408513, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1823745838}
   m_SourcePrefab: {fileID: 100100000, guid: ec4100db0c0621548a15c6845932fb90, type: 3}
